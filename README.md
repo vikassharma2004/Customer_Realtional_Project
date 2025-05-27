@@ -4,34 +4,41 @@ An enterprise-grade CRM (Customer Relationship Management) system built using Ja
 
 ---
 
+
 ## 📁 Folder Structure
 
 src/
-├── assets/ # Static files (images, logos, etc.)
+├── assets/ # Static files (images, logos, fonts)
 ├── components/ # Global reusable UI components
-├── context/ # React context providers (e.g., AuthContext)
-├── hooks/ # Custom reusable hooks
-├── layouts/ # Application layouts (Sidebar, Auth)
+├── context/ # React Context providers (e.g., AuthContext)
+├── hooks/ # Custom reusable React hooks
+├── layouts/ # Application layouts (Sidebar, Auth layout)
 ├── modules/ # Feature modules (Auth, Clients, Leads, etc.)
 │ ├── Auth/
-│ │ ├── pages/
-│ │ ├── services/
-│ │ └── hooks/
+│ │ ├── pages/ # Pages like Login, Register, ForgotPassword
+│ │ ├── services/ # API calls & business logic
+│ │ ├── hooks/ # Module-specific hooks
+│ │ └── index.js # Barrel file for exports
 │ ├── Clients/
+│ │ ├── pages/
+│ │ ├── components/
+│ │ ├── services/
+│ │ ├── hooks/
+│ │ └── index.js
 │ ├── Leads/
+│ │ └── ...
 │ ├── Profile/
+│ │ └── ...
 │ └── Reports/
-├── routes/ # Route definitions and protection logic
-├── services/ # API utilities and axios setup
-├── store/ # App-wide state management (Redux/Zustand)
+│ └── ...
+├── routes/ # Route definitions & route protection logic
+├── services/ # Global API services (e.g., Axios config)
+├── store/ # State management (Redux or Zustand)
 ├── theme/ # Material UI theme customization
 ├── utils/ # Utility/helper functions
 ├── App.js # Main application component
 └── main.js # Application entry point
 
-yaml
-Copy
-Edit
 
 
 
