@@ -1,11 +1,20 @@
-
+import { useRoutes } from 'react-router-dom';
 import './App.css'
-import Button from '@mui/material/Button';
+import {allRoutes} from './routes/AppRoutes.jsx';
+
+
+// Routes to be rendered
+function AppRouter() {
+  const routes = useRoutes(allRoutes);
+  return routes;
+}
+
 const App = () => {
   return (
-    <div>
-      <Button variant="contained">Hello world</Button>;
-    </div>
+  <>
+      <AppRouter />
+  
+  </>
   )
 }
 
