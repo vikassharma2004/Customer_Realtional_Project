@@ -1,8 +1,10 @@
-
+import Loader from "@/components/Loader"
 
 const OrganisationPage = () => {
   return (
-    <div>OrganisationPage</div>
+    <div>
+      <Loader/>
+    </div>
   )
 }
 
