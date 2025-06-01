@@ -3,7 +3,7 @@ import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { useAuthStore } from "../../../store/AuthStore";
 
-export const Login = () => {
+ const Login = () => {
   // from zustand store
   const { login } = useAuthStore();
   const [email, setEmail] = useState("");
@@ -97,7 +97,7 @@ export const Login = () => {
 
         <p className="mt-4 text-center text-sm text-gray-600">
           Don’t have an account?{" "}
-          <Link to="/auth/register" className="text-blue-600 hover:underline">
+          <Link to="/" className="text-blue-600 hover:underline">
             Click here to sign up.
           </Link>
         </p>
@@ -105,3 +105,4 @@ export const Login = () => {
     </>
   );
 };
+export default Login
