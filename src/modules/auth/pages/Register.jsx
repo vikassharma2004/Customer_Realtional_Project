@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export const Register = () => {
+ const Register = () => {
     const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -126,10 +126,12 @@ export const Register = () => {
 
       <p className="text-sm text-center mt-4">
         Already have an Account?{" "}
-        <a href="/auth/login" className="text-blue-600 hover:underline">
+        <a href="/login" className="text-blue-600 hover:underline">
           Sign In
         </a>
       </p>
     </>
   );
 };
+
+export default Register
