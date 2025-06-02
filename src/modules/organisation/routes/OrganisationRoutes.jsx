@@ -12,11 +12,11 @@ export const OrganisationRoutes = [
     children: [
      
       {
-        path: "add-organisation", // /:orgName/organization/add-organization
+        path: "organisation/add-organisation", // /:orgName/organization/add-organization
         element: <AddOrganisation />,
       },
          {
-        path: "Your-organisation", // /:orgName/organization/add-organization
+        path: "organisation/manage", // /:orgName/organization/add-organization
         element: <YourOrganisation />,
       },
       {

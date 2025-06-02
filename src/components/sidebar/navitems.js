@@ -11,8 +11,10 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import AssignmentIndIcon from "@mui/icons-material/AssignmentInd";
 import BusinessIcon from "@mui/icons-material/Business";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-
-const orgPath = (module) => `/org-name/organisation/${module}`; // Replace dynamically in your app
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
+import AccessibilityIcon from '@mui/icons-material/Accessibility';
+let orgname="vikas"
+const orgPath = (module) => `/${orgname}/organisation/${module}`; // Replace dynamically in your app
 
 export const navItems = [
   {
@@ -31,7 +33,7 @@ export const navItems = [
     children: [
       {
         id: "manage-users",
-        icon: GroupIcon,
+        icon: ManageAccountsIcon,
         text: "Manage Users",
         to: `${orgPath("users")}/manage`,
       },
@@ -43,7 +45,7 @@ export const navItems = [
       },
       {
         id: "user-permissions",
-        icon: AssignmentIndIcon,
+        icon: AccessibilityIcon,
         text: "Roles & Permissions",
         to: `${orgPath("users")}/permissions`,
       },
@@ -61,26 +63,21 @@ export const navItems = [
         id: "manage-orgs",
         icon: BusinessIcon,
         text: "Your Organizations",
-        to: `${orgPath("organizations")}/manage`,
+        to: `${orgPath("organisation")}/manage`,
       },
       {
         id: "create-org",
         icon: PersonAddIcon,
         text: "Create Organization",
-        to: `${orgPath("organizations")}/create`,
+        to: `${orgPath("organisation")}/add-organisation`,
       },
       {
         id: "org-profile",
         icon: AssignmentIndIcon,
         text: "Organization Profile",
-        to: `${orgPath("organizations")}/profile`,
+        to: `${orgPath("organisation-profile")}/:id`,
       },
-      {
-        id: "org-profile-by-id",
-        icon: AssignmentIndIcon,
-        text: "Org Profile By ID",
-        to: `${orgPath("organizations")}/profile/:orgId`,
-      },
+     
     ],
   },
 

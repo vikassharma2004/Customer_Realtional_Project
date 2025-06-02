@@ -6,7 +6,11 @@ export const UserRoutes = [
         element: <MainLayout />,
         children: [
             {
-                path: "users",
+                path: "users/manage",
+                element: <AllUser />,
+            },
+              {
+                path: "users/create",
                 element: <AllUser />,
             },
         ],
