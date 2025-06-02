@@ -3,6 +3,7 @@ import OrganisationDashboard from "../pages/OrganisationDashboard.jsx";
 import OrganisationPage from "../pages/OrganisationPage.jsx";
 import MainLayout from "../../../Layouts/MainLayout.jsx";
 import OrganisationProfile from "../pages/OrganisationProfile.jsx"
+import YourOrganisation from "../pages/YourOrganisation.jsx";
 
 export const OrganisationRoutes = [
   {
@@ -13,6 +14,10 @@ export const OrganisationRoutes = [
       {
         path: "add-organisation", // /:orgName/organization/add-organization
         element: <AddOrganisation />,
+      },
+         {
+        path: "Your-organisation", // /:orgName/organization/add-organization
+        element: <YourOrganisation />,
       },
       {
         path: "dashboard", // optional separate dashboard route
