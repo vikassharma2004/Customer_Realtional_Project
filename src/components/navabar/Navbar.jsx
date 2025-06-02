@@ -15,7 +15,7 @@ const organizations = [
 
 const Navbar = () => {
   return (
-    <div className=" flex items-center justify-end gap-8 mr-14 font-[Roboto]">
+    <div className=" flex items-center justify-end gap-8 mr-14 font-[Roboto] py-2">
       <div>
         <CustomSelect data={organizations} />
       </div>

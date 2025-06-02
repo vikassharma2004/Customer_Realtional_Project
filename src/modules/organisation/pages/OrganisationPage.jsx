@@ -1,9 +1,10 @@
-import Loader from "@/components/Loader"
+import SubHeader from "@/Layouts/SubHeader"
+
 
 const OrganisationPage = () => {
   return (
     <div>
-      <Loader/>
+      <SubHeader title="Organisation" />
     </div>
   )
 }
