@@ -1,8 +1,11 @@
+import SubHeader from "@/Layouts/SubHeader"
 
 
 const AddOrganisation = () => {
   return (
-    <div>AddOrganisation</div>
+    <div>
+      <SubHeader title="Add Organisation" buttonTitle="Create" />
+    </div>
   )
 }
 

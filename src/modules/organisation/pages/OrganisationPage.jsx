@@ -1,8 +1,11 @@
+import SubHeader from "@/Layouts/SubHeader"
 
 
 const OrganisationPage = () => {
   return (
-    <div>OrganisationPage</div>
+    <div>
+      <SubHeader title="Organisation" />
+    </div>
   )
 }
 

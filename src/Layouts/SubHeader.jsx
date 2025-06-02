@@ -43,8 +43,8 @@ const SubHeader = ({
         <h1 className="text-white text-4xl font-medium ">{title}</h1>
 
         <ButtonOutline
-          name="Organisation"
-          link="/jobs/create"
+          name={btnTitle|| null}
+          link={btnLink || "null"}
           bgOpacity="30"
           textColor="text-white/70"
           textSize="text-lg"
