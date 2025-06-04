@@ -154,7 +154,7 @@ const SidebarMenu = () => {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  <div className="flex items-center gap-3">
+                  <Link to={item.to} className="flex items-center gap-3">
                     <div className="w-5 h-5 text-current flex-shrink-0">
                       <item.icon />
                     </div>
@@ -171,7 +171,7 @@ const SidebarMenu = () => {
                         </motion.span>
                       )}
                     </AnimatePresence>
-                  </div>
+                  </Link>
 
                   {/* Toggle Arrow */}
                   {item.submenu && isOpen && (

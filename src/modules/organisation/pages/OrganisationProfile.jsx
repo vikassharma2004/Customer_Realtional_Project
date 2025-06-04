@@ -1,11 +1,11 @@
 import { useState } from "react";
-import SubHeader from "../../../Layouts/SubHeader.jsx" // Adjust path if different
-import OrgAbout from "../components/OrgAbout.jsx";
-import OrgHeader from "../components/OrgHeader.jsx";
-import OrgProfileCard from "../components/OrgProfileCard.jsx";
-import SendInvitationDialog from "../components/SendInvitationDialog.jsx";
+import SubHeader from "../../../Layouts/SubHeader.jsx"; // Adjust path if different
+import OrgAbout from "../components/org-profile/OrgAbout.jsx";
+import OrgHeader from "../components/org-profile/OrgHeader.jsx";
+import OrgProfileCard from "../components/org-profile/OrgProfileCard.jsx";
+import SendInvitationDialog from "../components/org-profile/SendInvitationDialog.jsx";
 const OrganisationProfile = () => {
-    const [showInvite, setShowInvite] = useState(false);
+  const [showInvite, setShowInvite] = useState(false);
   const [invitation, setInvitation] = useState("");
   const [disabled, setDisabled] = useState(false);
 
@@ -16,7 +16,7 @@ const OrganisationProfile = () => {
     orgLogo: "/logo.png", // Placeholder
     orgBanner: "/banner.png", // Placeholder
   };
-    const handleStatusChange = (value) => {
+  const handleStatusChange = (value) => {
     console.log("Selected status:", value);
   };
 
@@ -35,37 +35,37 @@ const OrganisationProfile = () => {
   };
 
   // Optional: handler for dropdown change
- 
 
   return (
- <>
+    <>
       {/* SubHeader */}
       <SubHeader
         title="Organisation Profile"
         btnTitle="Create"
         btnLink="/organisation/create" // or pass setShowAdd if using modal
         handleSelected={handleStatusChange}
-        />
+      />
 
       {/* Main content */}
-   
-    <div className="space-y-4 px-25 py-6">
-      <OrgHeader orgData={orgData} onInviteClick={() => setShowInvite(true)} />
-      <div className="flex flex-col md:flex-row gap-4">
-        <OrgAbout orgData={orgData} />
-        <OrgProfileCard orgData={orgData} />
-      </div>
-      <SendInvitationDialog
-        open={showInvite}
-        onClose={() => setShowInvite(false)}
-        onSend={handleSend}
-        onChange={handleChange}
-        disabled={disabled}
-        />
-    </div>
 
+      <div className="space-y-4 px-25 py-6">
+        <OrgHeader
+          orgData={orgData}
+          onInviteClick={() => setShowInvite(true)}
+        />
+        <div className="flex flex-col md:flex-row gap-4">
+          <OrgAbout orgData={orgData} />
+          <OrgProfileCard orgData={orgData} />
+        </div>
+        <SendInvitationDialog
+          open={showInvite}
+          onClose={() => setShowInvite(false)}
+          onSend={handleSend}
+          onChange={handleChange}
+          disabled={disabled}
+        />
+      </div>
     </>
-   
   );
 };
 

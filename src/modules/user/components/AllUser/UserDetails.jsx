@@ -14,7 +14,7 @@ const UserDetails = ({ user }) => {
 
   return (
     <div className="">
-      <h5 className="text-primary font-semibold mb-4 ">About</h5>
+      <h5 className="text-primary font-semibold mb-4 text-center ">About</h5>
       <div className="space-y-6">
         {details.map(({ title, desc }, i) => (
           <div key={i} className="flex">

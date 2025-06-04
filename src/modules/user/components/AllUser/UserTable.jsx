@@ -12,13 +12,13 @@ import {
 
 const UserTable = ({ users, selectedUser, setSelectedUser,headers=[] ,orgName}) => {
   const tableHeader = (
-    <TableRow className="bg-white border-b rounded-md">
+    <TableRow className=" border-b rounded-mdw-full ">
       <TableHead className="w-12 text-center p-3 text-[#2E46BA] font-semibold cursor-pointer rounded-md">
        
       </TableHead>
       {
         headers.map((header,idx) => (
-          <TableHead key={idx} className="w-24 text-center p-3 text-xl text-[#2E46BA] font-semibold cursor-pointer rounded-md">
+          <TableHead key={idx} className="w-24 text-center p-3 text-xl md:text-sm text-[#2E46BA] font-semibold cursor-pointer rounded-md">
             {header}
           </TableHead>
         ))
@@ -29,7 +29,7 @@ const UserTable = ({ users, selectedUser, setSelectedUser,headers=[] ,orgName}) 
   );
 
   return (
-    <div className="rounded-2xl bg-white  ">
+    <div className="rounded-2xl   ">
       <CustomTable header={tableHeader} className="rounded-2xl">
         {users.map((user) => (
           <TableRow
@@ -39,7 +39,7 @@ const UserTable = ({ users, selectedUser, setSelectedUser,headers=[] ,orgName}) 
             }`}
             onClick={() => setSelectedUser(user)}
           >
-            <TableCell className="text-center p-5  ">
+            <TableCell className="text-center p-1  ">
               <input
                 type="radio"
                 name="selectUser"
@@ -49,13 +49,13 @@ const UserTable = ({ users, selectedUser, setSelectedUser,headers=[] ,orgName}) 
                 className="cursor-pointer h-4 w-4"
               />
             </TableCell>
-            <TableCell className="p-5">{`${user.firstName} ${
+            <TableCell className="p-2 text-center">{`${user.firstName} ${
               user.lastName || ""
             }`}</TableCell>
-            <TableCell className="p-5">{user.email}</TableCell>
-            <TableCell className="p-5">{user.phone}</TableCell>
-            <TableCell className="p-5">{user.department}</TableCell>
-            <TableCell className="p-5">{user.role}</TableCell>
+            <TableCell className="p-2 text-center">{user.email}</TableCell>
+            <TableCell className="p-2 text-center">{user.phone}</TableCell>
+            
+            <TableCell className="p-2 text-center">{user.role}</TableCell>
             <TableCell className="text-center p-5">
               <TooltipProvider delayDuration={0}>
                 <Tooltip>
