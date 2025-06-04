@@ -1,23 +1,28 @@
 import React, { useState, useEffect } from "react";
-import dummyUsers from "../../../utils/data.js"; // your dummy data file
+import dummyUsers from "../../../utils/data.js";
 import UserDetails from "../components/AllUser/UserDetails";
 import UserTable from "../components/AllUser/UserTable";
 import Pagination from "../components/AllUser/Pagination";
 import SubHeader from "@/Layouts/SubHeader";
 import { Skeleton } from "@/components/ui/skeleton";
+import CRMPageLayout from "@/Layouts/CRMPageLayout";
+import RecentActivity from "@/components/common/RecentAcitvity.jsx";
 
-// header for table 
+const recentActivityData = [
+  { action: "Updated role for Vikas Sharma", timestamp: "Just now" },
+  { action: "Added new user: Pooja Gupta", timestamp: "5 mins ago" },
+  { action: "Removed user: Raj Singh", timestamp: "Yesterday" },
+  { action: "Changed billing plan to Pro", timestamp: "10 mins ago" },
+  { action: "Created new organization: TechNova", timestamp: "30 mins ago" },
+  { action: "Updated contact info for Nisha Verma", timestamp: "1 hour ago" },
+  { action: "Assigned Manager role to Rohan Mehta", timestamp: "3 hours ago" },
+  { action: "Deactivated user: Anjali Rao", timestamp: "Today, 9:30 AM" },
+  { action: "Reset password for Aman Jain", timestamp: "2 days ago" },
+  { action: "Updated permissions for Support module", timestamp: "Last week" },
+];
 
-const header = [
-
-"Name",
-"Email",
-"Phone",
-"Department",
-"Role",
-"Actions",
-]
-  
+// Table headers
+const header = ["Name", "Email", "Phone", "Role", "Actions"];
 
 const AllUsers = () => {
   const [allUsers, setAllUsers] = useState([]);
@@ -42,11 +47,11 @@ const AllUsers = () => {
   const onPaginationChange = (start, end) => setPagination({ start, end });
 
   return (
-    <div className="relative">
+    <div className="relative ">
       <SubHeader title="All Users" />
-      <div className="flex flex-col xl:flex-row gap-6 px-25 -mt-4 absolute w-full ">
-        <div className="w-full xl:w-1/4 bg-white rounded-2xl p-4 h-full shadow-md">
-          {loading ? (
+      <CRMPageLayout
+        details={
+          loading ? (
             <div className="space-y-2">
               <Skeleton className="h-6 w-3/4 bg-black/10" />
               <Skeleton className="h-4 w-full bg-black/10" />
@@ -56,12 +61,11 @@ const AllUsers = () => {
             </div>
           ) : (
             <UserDetails user={selectedUser} />
-          )}
-        </div>
-
-        <div className="w-full xl:w-3/5 bg-white rounded-2xl shadow p-4 overflow-x-auto md:w-full">
-          {loading ? (
-            <div className="space-y-2">
+          )
+        }
+        main={
+          loading ? (
+            <div className="space-y-2 hide-scrollbar ">
               {[...Array(showPerPage)].map((_, i) => (
                 <Skeleton key={i} className="h-10 bg-black/5 rounded-2xl" />
               ))}
@@ -83,9 +87,22 @@ const AllUsers = () => {
                 />
               </div>
             </>
-          )}
-        </div>
-      </div>
+          )
+        }
+        right={
+          loading ? (
+            <div className="space-y-2">
+              <Skeleton className="h-15 w-full bg-black/10" />
+              <Skeleton className="h-15 w-full bg-black/10" />
+              <Skeleton className="h-15 w-full bg-black/10" />
+            </div>
+          ) : (
+            <div className="max-h-[360px] overflow-y-auto rounded-2xl shadow-inner hide-scrollbar w-full">
+              <RecentActivity activities={recentActivityData} />
+            </div>
+          )
+        }
+      />
     </div>
   );
 };

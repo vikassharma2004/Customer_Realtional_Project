@@ -73,7 +73,7 @@ const AddOrgForm = () => {
     <>
       <form
         onSubmit={handleSubmit}
-        className="w-full max-w-screen-xl mx-auto space-y-10 bg-white p-10 rounded shadow-md font-['Roboto']"
+        className="w-full max-w-screen-xl mx-auto space-y-10 bg-white p-10 rounded-2xl shadow-md font-['Roboto'] absolute -mt-15"
       >
         <h2 className="text-xl font-bold text-primary">Add Organization</h2>
 
