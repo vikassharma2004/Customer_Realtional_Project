@@ -4,6 +4,7 @@ import OrganisationPage from "../pages/OrganisationPage.jsx";
 import MainLayout from "../../../Layouts/MainLayout.jsx";
 import OrganisationProfile from "../pages/OrganisationProfile.jsx"
 import YourOrganisation from "../pages/YourOrganisation.jsx";
+import SidebarCheck from "../../../pages/SidebarCheck.jsx"
 
 export const OrganisationRoutes = [
   {
@@ -31,7 +32,11 @@ export const OrganisationRoutes = [
         path: "organisation-profile/:id", // /:orgName/organization/:id
         element: <OrganisationProfile />,
       },
+      {
+        path: "sidebarcheck",
+        element: <SidebarCheck />,
+      },
     ],
-  },
+      },
 ];
 

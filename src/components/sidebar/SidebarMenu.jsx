@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 
 const SidebarMenu = () => {
   const [isOpen, setIsOpen] = useState(false); // Start closed
+  const [pinned, setPinned] = useState(false); // <- NEW
   const [activeItem, setActiveItem] = useState(1); // Track active item
   const [expandedMenus, setExpandedMenus] = useState([]);
   const isExpanded = (id) => expandedMenus.includes(id);
@@ -78,8 +79,12 @@ const SidebarMenu = () => {
         variants={sidebarVariants}
         animate={isOpen ? "open" : "closed"}
         className="fixed left-0 top-0 h-screen bg-white shadow-lg flex flex-col font-['Manrope'] z-50 "
-        onMouseEnter={() => setIsOpen(true)}
-        onMouseLeave={() => setIsOpen(false)}
+        onMouseEnter={() => {
+          if (!pinned) setIsOpen(true); // hover open only if not pinned
+        }}
+        onMouseLeave={() => {
+          if (!pinned) setIsOpen(false); // hover close only if not pinned
+        }}
       >
         {/* Logo and toggle button */}
         <div className="flex items-center justify-between px-3 py-4 border-b border-gray-100">
@@ -88,7 +93,13 @@ const SidebarMenu = () => {
             variants={logoVariants}
             animate={isOpen ? "open" : "closed"}
             className="flex items-center overflow-hidden cursor-pointer"
-            onClick={() => setIsOpen(!isOpen)}
+            onClick={() => {
+              setPinned((prevPinned) => {
+                const newPinned = !prevPinned;
+                setIsOpen(newPinned); // if pinned => open; if unpinned => close
+                return newPinned;
+              });
+            }}
           >
             {
               // Conditional rendering based on isOpen
