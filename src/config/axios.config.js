@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const axiosInstance = axios.create({
-    baseURL: "https://crm-backend-khaki.vercel.app/api",
+    baseURL: "http://localhost:5001/api",
     withCredentials: true,
      headers: {
     "Content-Type": "application/json",
