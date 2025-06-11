@@ -5,14 +5,14 @@ import { Link } from 'react-router-dom';
 import { Clock, Star, Folder, Layers, Users, MoreHorizontal, UserCircle2, AppWindowIcon } from 'lucide-react';
 
 const items = [
-  { id: 1, label: 'For you', icon: <UserCircle2 />, to: '/for-you' },
-  { id: 2, label: 'Recent', icon: <Clock />, to: '/recent' },
-  { id: 3, label: 'Starred', icon: <Star />, to: '/starred' },
-  { id: 4, label: 'Apps', icon: <AppWindowIcon />, to: '/apps' },
-  { id: 5, label: 'Plans', icon: <Layers />, to: '/plans' },
-  { id: 6, label: 'Projects', icon: <Folder />, to: '/projects' },
-  { id: 7, label: 'Teams', icon: <Users />, to: '/teams' },
-  { id: 8, label: 'More', icon: <MoreHorizontal />, to: '/more' },
+  { id: 1, label: 'For you', icon: <UserCircle2 />, to: 'for-you' },
+  { id: 2, label: 'Recent', icon: <Clock />, to: 'recent' },
+  { id: 3, label: 'Starred', icon: <Star />, to: 'starred' },
+  { id: 4, label: 'Apps', icon: <AppWindowIcon />, to: 'apps' },
+  { id: 5, label: 'Plans', icon: <Layers />, to: 'plans' },
+  { id: 6, label: 'Projects', icon: <Folder />, to: 'projects' },
+  { id: 7, label: 'Teams', icon: <Users />, to: 'teams' },
+  { id: 8, label: 'More', icon: <MoreHorizontal />, to: 'more' },
 ];
 
 const Sidebar = () => {
