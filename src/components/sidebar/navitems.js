@@ -85,7 +85,21 @@ console.log("orgId at getNavItems", orgId);
       id: "firms",
       icon: WorkIcon,
       text: "Firms",
-      to: `${orgPath("firms")}`,
+      submenu: true,
+      children: [
+        {
+          id: "manage-firms",
+          icon: WorkIcon,
+          text: "Your Firms",
+          to: `${orgPath("firms")}`,
+        },
+        {
+          id: "create-firms",
+          icon: PersonAddIcon,
+          text: "Create Firm",
+          to: `${orgPath("firms")}/add-firm`,
+        },
+      ],
     },
     {
       id: "vendors",
