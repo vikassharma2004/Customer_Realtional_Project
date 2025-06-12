@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   LayoutGrid,
   Bell,
@@ -7,12 +7,36 @@ import {
   Search,
   Plus,
   ChevronRight,
+  Home,
+  Book,
+  Goal,
+  Users,
+  Search as SearchIcon,
+  MessageCircle,
+  MonitorSmartphone,
+  Settings as AdminIcon,
 } from "lucide-react";
 import { useSidebar } from "../context/SidebarContext";
+
+const appList = [
+  { name: "Home", icon: <Home /> },
+  { name: "Jira", icon: <LayoutGrid /> },
+  { name: "Confluence", icon: <Book /> },
+  { name: "Goals", icon: <Goal /> },
+  { name: "Teams", icon: <Users /> },
+  { name: "Search", icon: <SearchIcon /> },
+  { name: "Chat", icon: <MessageCircle /> },
+  { name: "Studio", icon: <MonitorSmartphone /> },
+  { name: "Administration", icon: <AdminIcon /> },
+];
 
 const Navbar = () => {
   const { isOpen, setIsOpen, pinned, setPinned } = useSidebar();
   const [showDropdown, setShowDropdown] = useState(false);
+  const [selectedApp, setSelectedApp] = useState("Jira");
+  const [leftWidth, setLeftWidth] = useState(60);
+  const resizingRef = useRef(false);
+  const leftPanelRef = useRef(null);
 
   const handleMouseEnter = () => {
     if (!pinned) setIsOpen(true);
@@ -23,12 +47,37 @@ const Navbar = () => {
   };
 
   const handleClick = () => {
-    setPinned((prev) => !prev); // toggle pin
+    setPinned((prev) => !prev);
     setIsOpen((prev) => (pinned ? false : true));
   };
 
+  const startResizing = () => {
+    resizingRef.current = true;
+  };
+
+  const stopResizing = () => {
+    resizingRef.current = false;
+  };
+
+  const resize = (e) => {
+    if (!resizingRef.current) return;
+    const newWidth = e.clientX - leftPanelRef.current?.getBoundingClientRect().left;
+    if (newWidth > 50 && newWidth < 200) {
+      setLeftWidth(newWidth);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("mousemove", resize);
+    window.addEventListener("mouseup", stopResizing);
+    return () => {
+      window.removeEventListener("mousemove", resize);
+      window.removeEventListener("mouseup", stopResizing);
+    };
+  }, []);
+
   return (
-    <nav className="flex items-center justify-between bg-white px-4 py-2 border-b-1 border-gray-500 w-full fixed top-0 left-0 right-0 z-50">
+    <nav className="flex items-center justify-between bg-white px-4 py-2 border-b border-gray-300 w-full fixed top-0 left-0 right-0 z-50">
       {/* Left section */}
       <div className="flex items-center gap-3">
         {/* Sidebar Toggle Button */}
@@ -41,6 +90,7 @@ const Navbar = () => {
           <ChevronRight className="w-4 h-4 text-gray-700" />
         </button>
 
+        {/* App Switcher Dropdown */}
         <div className="relative">
           <button
             className="p-1 hover:bg-gray-100 rounded-md"
@@ -49,29 +99,61 @@ const Navbar = () => {
             <LayoutGrid className="w-5 h-5 text-gray-600" />
           </button>
 
-          {/* Dropdown Panel */}
+          {/* Dropdown Panel with Icon Sidebar + Resizable */}
           {showDropdown && (
-            <div className="absolute top-10 left-0 bg-white shadow-lg border rounded-md w-64 z-50 p-2">
-              <p className="text-sm font-medium px-2 py-1">Switch sites or apps</p>
-              <div className="flex flex-col gap-2 mt-2">
-                {[
-                  "Home",
-                  "Jira",
-                  "Confluence",
-                  "Goals",
-                  "Teams",
-                  "Search",
-                  "Chat",
-                  "Studio",
-                  "Administration",
-                ].map((item) => (
+            <div className="absolute top-10 left-0 bg-white shadow-lg border rounded-md z-50 flex h-64 min-w-[300px] w-[500px]">
+              {/* Left Icon Sidebar */}
+              <div
+                ref={leftPanelRef}
+                style={{ width: `${leftWidth}px` }}
+                className="bg-gray-50 p-2 overflow-y-auto flex flex-col items-center gap-3"
+              >
+                {appList.map((app) => (
                   <button
-                    key={item}
-                    className="text-left text-gray-700 hover:bg-gray-100 px-2 py-1 rounded"
+                    key={app.name}
+                    onClick={() => setSelectedApp(app.name)}
+                    title={app.name}
+                    className={`w-10 h-10 flex items-center justify-center rounded-md hover:bg-gray-200 ${
+                      selectedApp === app.name ? "bg-gray-200" : ""
+                    }`}
                   >
-                    {item}
+                    {app.icon}
                   </button>
                 ))}
+              </div>
+
+              {/* Resizer */}
+              <div
+                className="w-1 bg-gray-300 cursor-col-resize hover:bg-gray-500"
+                onMouseDown={startResizing}
+              ></div>
+
+              {/* Right Content Panel */}
+              <div
+                ref={leftPanelRef}
+                className="bg-gray-50 p-2 w-full overflow-y-auto"
+              >
+                <p className="text-sm font-medium px-2 py-1">Switch sites or apps</p>
+                <div className="flex flex-col gap-2 mt-2">
+                  {[
+                    "Home",
+                    "Jira",
+                    "Confluence",
+                    "Goals",
+                    "Teams",
+                    "Search",
+                    "Chat",
+                    "Studio",
+                    "Administration",
+                  ].map((item) => (
+                    <button
+                      key={item}
+                      className="text-left text-gray-700 hover:bg-gray-100 px-2 py-1 rounded text-sm"
+                    >
+                      {item}
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
           )}
