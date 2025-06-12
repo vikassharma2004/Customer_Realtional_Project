@@ -3,11 +3,13 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronRight, ChevronLeft } from "lucide-react";
 import Flogo from "../../assets/cubicleFullLogo.png";
 import logo from "../../assets/logo.png";
-import { navItems } from "./navitems.js";
+
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
-import { Link } from "react-router-dom";
-
+import { Link } from "react-router-dom"
+import { getNavItems } from "./navitems.js";
+const navItems = getNavItems();
+console.log("ren")
 const SidebarMenu = () => {
   const [isOpen, setIsOpen] = useState(false); // Start closed
   const [activeItem, setActiveItem] = useState(1); // Track active item
@@ -25,7 +27,7 @@ const SidebarMenu = () => {
   // Framer Motion variants for sidebar animation
   const sidebarVariants = {
     open: {
-      width: "15rem", // w-60 equivalent (240px)
+      width: "13rem", // w-60 equivalent (240px)
       transition: {
         type: "spring",
         stiffness: 400,
@@ -34,7 +36,7 @@ const SidebarMenu = () => {
       },
     },
     closed: {
-      width: "5rem", // w-20 equivalent (80px)
+      width: "4rem", // w-20 equivalent (80px)
       transition: {
         type: "spring",
         stiffness: 400,
@@ -77,12 +79,12 @@ const SidebarMenu = () => {
       <motion.div
         variants={sidebarVariants}
         animate={isOpen ? "open" : "closed"}
-        className="fixed left-0 top-0 h-screen bg-white shadow-lg flex flex-col font-['Manrope'] z-50 "
+        className="fixed left-0 top-0 h-screen bg-white shadow-lg flex flex-col font-['Manrope'] z-50 hide-scrollbar "
         onMouseEnter={() => setIsOpen(true)}
         onMouseLeave={() => setIsOpen(false)}
       >
         {/* Logo and toggle button */}
-        <div className="flex items-center justify-between px-3 py-4 border-b border-gray-100">
+        <div className="flex items-center justify-between px-1 py-4 border-b border-gray-100">
           {/* Logo - Clickable to toggle */}
           <motion.div
             variants={logoVariants}
@@ -97,7 +99,7 @@ const SidebarMenu = () => {
                   src={Flogo}
                   alt="logo"
                   className="transition-all duration-300 
-              w-36 h-10"
+              w-30 h-10"
                 />
               ) : (
                 <img
@@ -118,7 +120,7 @@ const SidebarMenu = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.8 }}
                 onClick={() => setIsOpen(false)}
-                className="text-blue-700 hover:bg-blue-100 rounded-full p-2 ml-2 transition-colors duration-200"
+                className="text-blue-700 hover:bg-blue-100 rounded-full  transition-colors duration-200"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -133,7 +135,7 @@ const SidebarMenu = () => {
           className="relative font-['Manrope'] overflow-y-scroll hide-scrollbar"
           onClick={(e) => e.stopPropagation()}
         >
-          <div className="flex flex-col gap-2 mt-5 px-3 flex-1 overflow-y-auto">
+          <div className="flex flex-col gap-2 mt-5 px-1 flex-1 overflow-y-auto">
             {navItems.map((item) => (
               <div key={item.id}>
                 <motion.div
@@ -141,7 +143,7 @@ const SidebarMenu = () => {
                     setActiveItem(item.id);
                     if (!isOpen) toggleSidebar();
                   }}
-                  className={`flex items-center justify-between  p-3 rounded-lg cursor-pointer transition-all duration-200 relative
+                  className={`flex items-center justify-between  p-4 rounded-lg cursor-pointer transition-all duration-200 relative
               ${
                 activeItem === item.id
                   ? "bg-blue-800 text-white shadow-md"
@@ -155,7 +157,7 @@ const SidebarMenu = () => {
                   whileTap={{ scale: 0.98 }}
                 >
                   <Link to={item.to} className="flex items-center gap-3">
-                    <div className="w-5 h-5 text-current flex-shrink-0">
+                    <div className="w-4 h-4 text-sm flex-shrink-0">
                       <item.icon />
                     </div>
                     <AnimatePresence>
@@ -165,7 +167,7 @@ const SidebarMenu = () => {
                           initial="closed"
                           animate="open"
                           exit="closed"
-                          className="text-md font-medium whitespace-nowrap"
+                          className="text-sm font-medium whitespace-nowrap"
                         >
                           {item.text}
                         </motion.span>
