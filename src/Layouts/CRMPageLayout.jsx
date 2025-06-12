@@ -1,21 +1,27 @@
+// components/layouts/CRMPageLayout.jsx
 import React from "react";
 
 const CRMPageLayout = ({ details, main, right }) => {
   return (
-    <div className="flex flex-col xl:flex-row gap-6 pl-25 py-5 w-full absolute -mt-10">
-      {/* Left Sidebar - Details */}
-      <div className="w-full xl:max-w-xs bg-white rounded-2xl p-6 shadow-md max-h-[360px] overflow-y-auto hide-scrollbar">
-        {details}
-      </div>
+    <div className="flex flex-col xl:flex-row gap-6 pl-17 pr-5  w-full py-5 justify-around absolute -mt-10">
+      {/* Left - Details Panel */}
+      {
+        details && (
+          <div className="w-full xl:w-1/4 bg-white rounded-2xl p-6 h-full shadow-md">
+            {details}
+          </div>
+        )
+      }
+     
 
-      {/* Main Content */}
-      <div className="flex-1 bg-white rounded-2xl shadow p-4 overflow-x-auto">
+      {/* Center - Main Table or Content */}
+      <div className="w-full xl:w-3/5 bg-white rounded-2xl shadow p-4 overflow-x-auto flex-1">
         {main}
       </div>
 
-      {/* Right Sidebar - Recent Activity */}
+      {/* Optional Right Panel */}
       {right && (
-        <div className="w-full xl:max-w-sm bg-white rounded-2xl p-4 shadow-md max-h-[400px] overflow-y-auto">
+        <div className="w-full xl:w-1/6 bg-white rounded-2xl p-4 shadow-md h-[300px] overflow-y-scroll hide-scrollbar">
           {right}
         </div>
       )}

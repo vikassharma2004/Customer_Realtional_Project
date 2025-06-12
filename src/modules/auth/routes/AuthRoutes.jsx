@@ -13,7 +13,7 @@ export const AuthRoutes = [
       { path: 'login', element: <Login /> },
       
       { path: 'forgot-password', element: <ForgotPassword /> },
-      { path: 'reset-password', element: <ResetPassword /> },
+      { path: 'reset-password/:token', element: <ResetPassword /> },
     ],
   },
 ];

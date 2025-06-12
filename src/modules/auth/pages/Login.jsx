@@ -2,22 +2,29 @@ import { useState } from "react";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { useAuthStore } from "../../../store/AuthStore";
-
+import { useNavigate } from "react-router-dom";
  const Login = () => {
   // from zustand store
-  const { login } = useAuthStore();
+  const { login, loading } = useAuthStore();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [inputType, setInputType] = useState("password");
   const [disable, setDisable] = useState(false);
-
+const navigate = useNavigate();
+const orgName = localStorage.getItem('orgName')
   const handleSubmit = async (e) => {
     e.preventDefault();
     setDisable(true);
 
     try {
-      await login(email, password);
+    const response =  await login(email, password);
+   const orgName = localStorage.getItem('orgName')
       setDisable(false);
+      if(response){
+
+      navigate(`/${orgName}/dashboard`);
+
+      }
     } catch (err) {
       setDisable(false);
     }

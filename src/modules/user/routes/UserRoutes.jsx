@@ -8,11 +8,8 @@ export const UserRoutes = [
             {
                 path: "users/manage",
                 element: <AllUser />,
-            },
-              {
-                path: "users/create",
-                element: <AllUser />,
-            },
+            }
+             
         ],
     },
 

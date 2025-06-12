@@ -1,32 +1,74 @@
+import useOrgStore from "../../store/orgStore.js";
 import {
-      Select,
+  Select,
   SelectContent,
-  SelectGroup,
   SelectItem,
-  SelectLabel,
-  SelectScrollDownButton,
-  SelectScrollUpButton,
-  SelectSeparator,
   SelectTrigger,
-  SelectValue
-}from "../ui/select.jsx";
+  SelectValue,
+} from "../ui/select";
+import { useNavigate } from "react-router-dom";
+import { useAuthStore } from "@/store/AuthStore.js";
+export const CustomSelect = ({ onChange }) => {
+  const { userOrgs, switchOrg } = useOrgStore();
+  const { setCurrentOrg, currentOrg } = useAuthStore(); // from API: [{ orgId, orgName, ... }]
 
+  const navigate = useNavigate();
+  // console.log("currentOrg", currentOrg);
+  console.log(currentOrg, "currentOrg");
+  const handleChange = (selectedOrgId) => {
+    const selectedOrg = userOrgs.find((org) => org.orgId === selectedOrgId);
+    if (selectedOrg) {
+      let newOrg = {
+        orgId: selectedOrg.orgId,
+        orgName: selectedOrg.orgName,
+      };
+      localStorage.setItem("orgName", selectedOrg.orgName);
+      localStorage.setItem("orgId", selectedOrg.orgId);
+      console.log("Switched Organization:");
+      console.log("Org Name:", newOrg.orgName);
+      console.log("Org ID:", newOrg.orgId);
+      setCurrentOrg(newOrg);
+      switchOrgfuntion({ orgId: newOrg.orgId });
 
-export const CustomSelect = ({ data = [], onChange }) => (
-  <Select onValueChange={onChange}>
-    <SelectTrigger className="w-[150px] py-5 border border-blue-500  focus:ring-0 focus:ring-offset-0 focus:border-blue-600 text-md">
-      <SelectValue placeholder="Select organization" />
-    </SelectTrigger>
-    <SelectContent>
-      {data.map((org) => (
-        <SelectItem
-          key={org.id}
-          value={org.id}
-          className="text-sm font-medium"
-        >
-          {org.name}
+      onChange?.(newOrg);
+    }
+  };
+
+  const otherOrgs = userOrgs.filter((org) => org.orgId !== currentOrg?.orgId);
+  const switchOrgfuntion = async ({ orgId }) => {
+    try {
+      console.log("orgId at switchOrg", orgId);
+
+      const getnewOrg = await switchOrg(orgId);
+      console.log("getnewOrg", getnewOrg);
+
+      if (getnewOrg) {
+        const orgName = localStorage.getItem("orgName"); // Get the orgName from local storage and use it
+        console.log("orgName", orgName);
+
+        navigate(`/${orgName}/dashboard`);
+      }
+    } catch (error) {}
+  };
+
+  return (
+    <Select value={currentOrg?.orgId || ""} onValueChange={handleChange}>
+      <SelectTrigger className="w-[220px] py-5 border border-blue-500 text-md">
+        <SelectValue placeholder="Select organization">
+          {currentOrg?.orgName}
+        </SelectValue>
+      </SelectTrigger>
+
+      <SelectContent>
+        <SelectItem key={currentOrg?.orgId} value={currentOrg?.orgId}>
+          {currentOrg?.orgName}
         </SelectItem>
-      ))}
-    </SelectContent>
-  </Select>
-);
+        {otherOrgs.map((org) => (
+          <SelectItem key={org.orgId} value={org.orgId}>
+            {org.orgName}
+          </SelectItem>
+        ))}
+      </SelectContent>
+    </Select>
+  );
+};

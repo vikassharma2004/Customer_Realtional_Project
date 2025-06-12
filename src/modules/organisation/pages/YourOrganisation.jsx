@@ -3,34 +3,11 @@ import SubHeader from "@/Layouts/SubHeader";
 import OrgTable from "../components/OrgTable";
 import { Skeleton } from "@/components/ui/skeleton";
 import CRMPageLayout from "@/Layouts/CRMPageLayout"; // import your layout
-
-
 import OrgDetails from "../components/OrgDeatils";
 import RecentActivity from "@/components/common/RecentAcitvity";
+import useOrgStore from "@/store/orgStore";
 
-const orgsData = [
-  {
-    id: "org-001",
-    name: "Acme Corporation",
-    createdAt: "2024-11-12",
-    totalUsers: 15,
-    billingPlan: "Pro",
-  },
-  {
-    id: "org-002",
-    name: "Globex Inc.",
-    createdAt: "2023-07-08",
-    totalUsers: 42,
-    billingPlan: "Enterprise",
-  },
-  {
-    id: "org-003",
-    name: "Initech",
-    createdAt: "2022-03-22",
-    totalUsers: 8,
-    billingPlan: "Free",
-  },
-];
+
 
 const recentActivityData = [
   { action: "Updated role for Vikas Sharma", timestamp: "Just now" },
@@ -46,24 +23,25 @@ const recentActivityData = [
 ];
 
 const YourOrganisation = () => {
+  const { userOrgs, fetchUserOrgs } = useOrgStore();
   const [allOrgs, setAllOrgs] = useState([]);
-  const [selectedOrg, setSelectedOrg] = useState(null);
+  const [selectedOrg, setSelectedOrg] = useState();
   const [loading, setLoading] = useState(true);
   const [pagination, setPagination] = useState({ start: 0, end: 10 });
   const showPerPage = 10;
   const orgName = localStorage.getItem("orgName");
 
-  const headers = ["ID", "Name", "Created At", "Total Users", "Billing Plan", "Actions"];
+  const headers = ["Emp ID", "Name", "Email", "Role", "Actions"];
 
   useEffect(() => {
-    setLoading(true);
-    const timer = setTimeout(() => {
-      setAllOrgs(orgsData);
-      setSelectedOrg(orgsData[0] || null);
-      setLoading(false);
-    }, 1000);
-
-    return () => clearTimeout(timer);
+    setTimeout(() => {
+      fetchUserOrgs();
+      if (userOrgs.length > 0) {
+        setAllOrgs(userOrgs);
+        setSelectedOrg(userOrgs[0]);
+        setLoading(false);
+      }
+    }, 2000);
   }, []);
 
   const onPaginationChange = (start, end) => setPagination({ start, end });
@@ -73,7 +51,7 @@ const YourOrganisation = () => {
       <SubHeader title="Your Organisation" />
       <CRMPageLayout
         details={
-           loading ? (
+          loading ? (
             <div className="space-y-2">
               <Skeleton className="h-6 w-3/4 bg-black/10" />
               <Skeleton className="h-4 w-full bg-black/10" />
@@ -83,21 +61,15 @@ const YourOrganisation = () => {
             </div>
           ) : (
             <OrgDetails org={selectedOrg} />
-           
           )
-        
-        
-        
-      }
-        
-            right={
+        }
+        right={
           loading ? (
             <div className="space-y-2">
               <Skeleton className="h-10  w-full bg-black/10" />
               <Skeleton className="h-10 w-3/4  bg-black/10" />
               <Skeleton className="h-10 w-1/2 bg-black/10" />
               <Skeleton className="h-10 w-full bg-black/10" />
-             
             </div>
           ) : (
             <div className="max-h-[360px] overflow-y-auto rounded-2xl shadow-inner hide-scrollbar w-full">
@@ -105,24 +77,23 @@ const YourOrganisation = () => {
             </div>
           )
         }
-        
         main={
           loading ? (
             <div className="space-y-4">
               {[...Array(showPerPage)].map((_, i) => (
-                <Skeleton key={i} className="h-10 w-full rounded-xl bg-muted" />
+                <Skeleton key={i} className="h-10  rounded-xl bg-muted" />
               ))}
             </div>
           ) : (
             <OrgTable
-              orgs={allOrgs.slice(pagination.start, pagination.end)}
+              orgs={userOrgs}
               selectedOrg={selectedOrg}
               setSelectedOrg={setSelectedOrg}
               orgName={orgName}
               headers={headers}
               onPaginationChange={onPaginationChange}
               showPerPage={showPerPage}
-              totalCount={allOrgs.length}
+              totalCount={allOrgs?.length}
             />
           )
         }

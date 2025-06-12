@@ -7,7 +7,7 @@ import YourOrganisation from "../pages/YourOrganisation.jsx";
 
 export const OrganisationRoutes = [
   {
-    path: "/:orgName/organisation",
+    path: "/:orgName",
     element: <MainLayout />,
     children: [
      

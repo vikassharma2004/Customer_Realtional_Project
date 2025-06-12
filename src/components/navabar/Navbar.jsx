@@ -5,19 +5,14 @@ import logo from "../../../src/assets/logo.png";
 import ButtonOutline from "../Button";
 import { CustomSelect } from "./CustomSelect.jsx";
 
-const organizations = [
-  { id: "org1", name: "Google" },
-  { id: "org2", name: "Microsoft" },
-  { id: "org3", name: "gemini" },
-  { id: "org4", name: "blackbox" },
-  { id: "org5", name: "apple" },
-];
+
 
 const Navbar = () => {
+  
   return (
     <div className=" flex items-center justify-end gap-8 mr-14 font-[Roboto] py-2">
       <div>
-        <CustomSelect data={organizations} />
+        <CustomSelect  />
       </div>
       <div>
         <ButtonOutline name="Create" />
