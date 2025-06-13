@@ -101,7 +101,7 @@ const Navbar = () => {
 
           {/* Dropdown Panel with Icon Sidebar + Resizable */}
           {showDropdown && (
-            <div className="absolute top-10 left-0 bg-white shadow-lg border rounded-md z-50 flex h-64 min-w-[300px] w-[500px]">
+            <div className="absolute top-10 left-0 bg-white shadow-lg border rounded-md z-50 flex h-auto min-w-[300px] ">
               {/* Left Icon Sidebar */}
               <div
                 ref={leftPanelRef}
@@ -113,7 +113,7 @@ const Navbar = () => {
                     key={app.name}
                     onClick={() => setSelectedApp(app.name)}
                     title={app.name}
-                    className={`w-10 h-10 flex items-center justify-center rounded-md hover:bg-gray-200 ${
+                    className={`w-10 h-10 flex items-center justify-center rounded-md hover:bg-gray-300 ${
                       selectedApp === app.name ? "bg-gray-200" : ""
                     }`}
                   >
@@ -133,8 +133,8 @@ const Navbar = () => {
                 ref={leftPanelRef}
                 className="bg-gray-50 p-2 w-full overflow-y-auto"
               >
-                <p className="text-sm font-medium px-2 py-1">Switch sites or apps</p>
-                <div className="flex flex-col gap-2 mt-2">
+                {/* <p className="text-sm font-medium px-2 py-1">Switch sites or apps</p> */}
+                <div className="flex flex-col gap-4 mt-2">
                   {[
                     "Home",
                     "Jira",
@@ -148,7 +148,7 @@ const Navbar = () => {
                   ].map((item) => (
                     <button
                       key={item}
-                      className="text-left text-gray-700 hover:bg-gray-100 px-2 py-1 rounded text-sm"
+                      className="text-left text-gray-700 hover:bg-gray-100 px-2 py-2 rounded text-md"
                     >
                       {item}
                     </button>
