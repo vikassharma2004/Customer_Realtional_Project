@@ -79,7 +79,21 @@ console.log("orgId at getNavItems", orgId);
       id: "leads",
       icon: BarChartIcon,
       text: "Leads",
-      to: `${orgPath("leads")}`,
+      submenu: true,
+      children: [
+        {
+          id: "manage-leads",
+          icon: BarChartIcon,
+          text: "Your Leads",
+          to: `${orgPath("leads")}`,
+        },
+        {
+          id: "create-leads",
+          icon: PersonAddIcon,
+          text: "Create Lead",
+          to: `${orgPath("leads")}/add-lead`,
+        },
+      ],
     },
     {
       id: "firms",
