@@ -1,4 +1,4 @@
-export const dummyLeads = [
+const dummyLeads = [
   {
     _id: "1",
     firstName: "Vikas",
@@ -72,3 +72,5 @@ export const dummyLeads = [
     organizationPhone: "4567890123",
   },
 ];
+
+export default dummyLeads;

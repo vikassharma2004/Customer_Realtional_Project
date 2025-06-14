@@ -10,7 +10,7 @@ import {
   TooltipProvider,
 } from "@radix-ui/react-tooltip";
 
-import { dummyLeads } from "@/utils/leaddata.js";
+import dummyLeads from "@/utils/leaddata.js";
 
 const tabOptions = ["All", "Hold", "Lost", "Deleted"];
 const headers = ["Name", "Email", "City", "Country", "Status", "Actions"];
