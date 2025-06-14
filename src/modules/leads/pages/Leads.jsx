@@ -6,7 +6,7 @@ import LeadDetails from "../components/LeadDetails";
 import LeadTable from "../components/LeadTable";
 import Pagination from "../components/Pagination";
 import RecentActivity from "@/components/common/RecentAcitvity";
-import dummyUsers from "../../../utils/data";
+import dummyLeads from "../../../utils/leaddata.js";
 
 const showPerPage = 10;
 const header = ["Name", "Email", "Phone", "Actions"];
@@ -34,8 +34,8 @@ const Leads = () => {
   useEffect(() => {
     setLoading(true);
     const timer = setTimeout(() => {
-      setAllLeads(dummyUsers);
-      setSelectedLead(dummyUsers[0] || null);
+      setAllLeads(dummyLeads);
+      setSelectedLead(dummyLeads[0] || null);
       setLoading(false);
     }, 1500);
     return () => clearTimeout(timer);

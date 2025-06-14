@@ -1,5 +1,3 @@
-// utils/dummyLeads.js
-
 export const dummyLeads = [
   {
     _id: "1",
@@ -10,6 +8,14 @@ export const dummyLeads = [
     city: "Jaipur",
     country: "India",
     status: "All",
+    title: "Website Redesign",
+    closureDate: "2025-07-01",
+    createdAt: "2025-06-01",
+    stage: "Qualified",
+    estimatedWorth: "$10,000",
+    organizationName: "DesignCo",
+    organizationEmail: "info@designco.com",
+    organizationPhone: "1234567890",
   },
   {
     _id: "2",
@@ -20,6 +26,14 @@ export const dummyLeads = [
     city: "Delhi",
     country: "India",
     status: "Hold",
+    title: "CRM Integration",
+    closureDate: "2025-07-10",
+    createdAt: "2025-06-03",
+    stage: "Contacted",
+    estimatedWorth: "$8,000",
+    organizationName: "SalesConnect",
+    organizationEmail: "contact@salesconnect.com",
+    organizationPhone: "2345678901",
   },
   {
     _id: "3",
@@ -30,6 +44,14 @@ export const dummyLeads = [
     city: "Mumbai",
     country: "India",
     status: "Lost",
+    title: "Mobile App Development",
+    closureDate: "2025-07-15",
+    createdAt: "2025-06-05",
+    stage: "Proposal Sent",
+    estimatedWorth: "$15,000",
+    organizationName: "Appify",
+    organizationEmail: "hello@appify.com",
+    organizationPhone: "3456789012",
   },
   {
     _id: "4",
@@ -40,5 +62,13 @@ export const dummyLeads = [
     city: "Hyderabad",
     country: "India",
     status: "Deleted",
+    title: "E-commerce Platform",
+    closureDate: "2025-07-20",
+    createdAt: "2025-06-07",
+    stage: "Lost",
+    estimatedWorth: "$12,000",
+    organizationName: "ShopEase",
+    organizationEmail: "support@shopease.com",
+    organizationPhone: "4567890123",
   },
 ];

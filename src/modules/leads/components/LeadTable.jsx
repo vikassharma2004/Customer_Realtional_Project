@@ -15,9 +15,8 @@ import { dummyLeads } from "@/utils/leaddata.js";
 const tabOptions = ["All", "Hold", "Lost", "Deleted"];
 const headers = ["Name", "Email", "City", "Country", "Status", "Actions"];
 
-const LeadTable = ({ orgName }) => {
+const LeadTable = ({ orgName, selectedLead, setSelectedLead }) => {
   const [selectedTab, setSelectedTab] = useState("All");
-  const [selectedLead, setSelectedLead] = useState(null);
   const [filteredLeads, setFilteredLeads] = useState([]);
 
   useEffect(() => {
@@ -50,12 +49,12 @@ const LeadTable = ({ orgName }) => {
   return (
     <div className="rounded-2xl p-4 bg-white">
       {/* Tabs */}
-      <div className="flex justify-start space-x-6 mb-4 border-b pb-2">
+      <div className="flex justify-center items-center space-x-21 mb-4 border-b">
         {tabOptions.map((tab) => (
           <button
             key={tab}
             onClick={() => setSelectedTab(tab)}
-            className={`px-4 py-1 font-semibold text-sm ${
+            className={`px-4 py-1 font-bold gap-7 text-md ${
               selectedTab === tab
                 ? "text-blue-600 border-b-2 border-blue-600"
                 : "text-gray-600"
