@@ -1,6 +1,7 @@
 import Invoices from "../pages/Invoices.jsx";
-// import AddInvoices from "../pages/AddInvoices.jsx"
+import AddInvoices from "../pages/AddInvoice.jsx"
 import MainLayout from "@/Layouts/MainLayout.jsx";
+import InvoiceDetailPage from "../pages/InvoiceDetailPage.jsx";
 export const InvoicesRoutes = [ 
     {
         path: "/:orgName",
@@ -10,10 +11,14 @@ export const InvoicesRoutes = [
                 path: "invoices",
                 element: <Invoices />,
             },
-            // {
-            //     path: "invoices/add-invoices",
-            //     element: <AddInvoices />,
-            // }
+            {
+                path: "invoices/add-invoice",
+                element: <AddInvoices />,
+            },
+            {
+                path: "invoices/invoice-details/:id",
+                element: <InvoiceDetailPage />,
+            }
         ],
     },
 

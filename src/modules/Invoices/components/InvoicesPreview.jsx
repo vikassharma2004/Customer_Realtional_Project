@@ -15,12 +15,12 @@ const InvoicesPreview = ({ invoice }) => {
   };
 
   const handleViewInvoice = () => {
-    navigate(`/${orgName}/dashboard/invoice/${invoice._id}`);
+    navigate(`/${orgName}/invoices/invoice-details/${invoice._id}`);
   };
 
   const handleShareInvoice = async () => {
     try {
-      const shareUrl = `${window.location.origin}/${orgName}/dashboard/invoice/${invoice._id}`;
+      const shareUrl = `${window.location.origin}/${orgName}/invoices/invoice-details/${invoice._id}`;
       await navigator.clipboard.writeText(shareUrl);
       toast.success("Invoice link copied to clipboard!");
     } catch (err) {

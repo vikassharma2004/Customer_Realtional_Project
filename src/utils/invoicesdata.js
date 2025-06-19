@@ -11,7 +11,11 @@ const invoicesData = [
     dueDate: "2024-06-10",
     email: "vikas@client.com",
     address: "123 MG Road, Bangalore, Karnataka, 560001",
-    total: 12000
+    total: 12000,
+    items: [
+      { name: "Website Design", price: 5000, quantity: 1 },
+      { name: "SEO Services", price: 2000, quantity: 2 }
+    ]
   },
   {
     _id: "inv002",
@@ -23,7 +27,11 @@ const invoicesData = [
     dueDate: "2024-06-15",
     email: "pooja@client.com",
     address: "88 Park Street, Jaipur, Rajasthan, 302016",
-    total: 8000
+    total: 8000,
+    items: [
+      { name: "App Development", price: 4000, quantity: 1 },
+      { name: "UI/UX Design", price: 2000, quantity: 2 }
+    ]
   },
   {
     _id: "inv003",
@@ -35,7 +43,11 @@ const invoicesData = [
     dueDate: "2024-05-30",
     email: "raj@client.com",
     address: "1 IT Park, Noida, UP, 201301",
-    total: 15000
+    total: 15000,
+    items: [
+      { name: "Consultation", price: 5000, quantity: 1 },
+      { name: "Maintenance", price: 2500, quantity: 4 }
+    ]
   }
 ];
 

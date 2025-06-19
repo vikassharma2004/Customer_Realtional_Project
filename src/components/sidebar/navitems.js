@@ -131,7 +131,21 @@ console.log("orgId at getNavItems", orgId);
       id: "invoices",
       icon: ReceiptLongIcon,
       text: "Invoices",
-      to: `${orgPath("invoices")}`,
+      submenu: true,
+      children: [
+        {
+          id: "manage-invoices",
+          icon: ReceiptLongIcon,
+          text: "Your Invoices",
+          to: `${orgPath("invoices")}`,
+        },
+        {
+          id: "create-invoices",
+          icon: PersonAddIcon,
+          text: "Create Invoice",
+          to: `${orgPath("invoices")}/add-invoice`,
+        },
+      ],
     },
     {
       id: "tax",
